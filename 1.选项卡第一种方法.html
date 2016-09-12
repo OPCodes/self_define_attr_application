@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            font-size: 30px;
+            text-align: center;
+            color: #fff;
+            background: green;
+            display: none;
+        }
+        .red {
+            background: red;
+        }
+    </style>
+    <script>
+        /*
+            思路：通过循环清空所有的元素样式，给当前操作的元素添加样式，实现选项卡的跳转。  
+        */
+        window.onload = function (){
+            var allBtns = document.getElementsByTagName("input");
+            var allDivs = document.getElementsByClassName("box");
+            
+            // 给所有按钮添加点击处理
+            for( var i = 0; i < allBtns.length; i++ ){
+                // 给每一个按钮添加一个index属性，用来保存它的下标
+                allBtns[i].index = i;
+                allBtns[i].onclick = function (){
+                    // 循环所有的按钮，先清掉所有按钮的背景颜色
+                    // 循环所有的div，让所有的DIV隐藏
+                    for( var i = 0; i < allBtns.length; i++ ){
+                        allBtns[i].className = "";
+                        allDivs[i].style.display = "none";
+                    }
+                    // 将当前点击的按钮的背景颜色设为red
+                    this.className = "red";
+                    // 根据按钮index属性保存的下标让对应的DIV显示
+                    allDivs[this.index].style.display = "block";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" class="red" value="按钮1" />
+    <input type="button" value="按钮2" />
+    <input type="button" value="按钮3" />
+    <div style="display:block;">内容一</div>
+    <div>内容二</div>
+    <div>内容三</div>
+</body>
+</html>
+    

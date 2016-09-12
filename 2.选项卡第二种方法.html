@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>	
+		.box {
+			width: 200px;
+			height: 200px;
+			line-height: 200px;
+			font-size: 30px;
+			text-align: center;
+			color: #fff;
+			background: green;
+			display: none;
+		}
+		.red {
+			background: red;
+		}
+	</style>
+	<script>
+		/*
+			思路：通过清空上一个具有class和样式的元素
+				  给当前操作的元素添加class和样式来实现选项卡的切换。
+		*/
+		window.onload = function (){
+		 	var allBtns = document.getElementsByTagName("input");
+		 	var allDivs = document.getElementsByClassName("box");
+		 	var cur = 0;
+
+		 	// 给所有按钮添加点击处理
+		 	for( var i = 0; i < allBtns.length; i++ ){
+		 		// 给每一个按钮添加一个index属性，用来保存它的下标
+		 		allBtns[i].index = i;
+		 		allBtns[i].onclick = function (){
+
+		 			// 清空上一个元素身上的样式和class
+		 			allBtns[cur].className = "";
+		 			allDivs[cur].style.display = "none";
+
+		 			// 将当前点击的按钮的背景颜色设为red
+		 			this.className = "red";
+		 			// 根据按钮index属性保存的下标让对应的DIV显示
+		 			allDivs[this.index].style.display = "block";
+
+		 			cur = this.index;
+		 		}
+		 	}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" class="btn red" value="按钮1" />
+	<input type="button" class="btn" value="按钮2" />
+	<input type="button" class="btn" value="按钮3" />
+	<div class="box" style="display:block;">内容一</div>
+	<div class="box">内容二</div>
+	<div class="box">内容三</div>
+</body>
+</html>

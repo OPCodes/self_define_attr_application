@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box {
+			width: 300px;
+			height: 50px;
+		}
+
+		#box div {
+			float: left;
+			margin-right: 5px;
+			padding: 0 20px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			border: 3px solid green;
+			cursor: pointer;
+		}
+
+		#box .checked {
+			border-color: red;
+			background: #ccc;
+		}
+	</style>
+	<script>
+		window.onload = function (){
+			var box = document.getElementById("box");
+			var allDiv = box.getElementsByTagName("div");
+
+			// 给box下所有的div加点击处理
+			for( var i = 0; i < allDiv.length; i++ ){
+				// 给每一个元素添加自定义属性
+				allDiv[i].status = false;
+				// 给每一个元素添加点击事件处理
+				allDiv[i].onclick = function(){
+					if( !this.status ){  // 当前状态为false时，表示未选中，点击选中
+						this.className = "checked";
+						this.status = true;
+					} else {             // 当前状态为true时，表示选中，点击取消选中
+						this.className = "";
+						this.status = false;
+					}
+					
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div>男</div>
+		<div>女</div>
+		<div>保密</div>
+	</div>
+</body>
+</html>
+    
